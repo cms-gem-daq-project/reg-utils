@@ -18,7 +18,7 @@ import datetime
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath("../python"))  # Root of the repo
+sys.path.insert(0, os.path.abspath("../../python"))  # Root of the repo
 
 if os.getenv("USE_DOXYREST"):
     # path for doxyrest sphinx extensions
@@ -88,7 +88,7 @@ if os.getenv("USE_DOXYREST"):
 else:
     extensions += ["breathe", "exhale"]
     breathe_projects = {
-        "rwreg_x86": "./exhalebuild/xml/",
+        "rwreg_x86": "../exhalebuild/xml/",
     }
 
     breathe_default_project = "rwreg_x86"
@@ -108,8 +108,8 @@ else:
         "exhaleDoxygenStdin": """
 PROJECT_NAME = rwreg
 PROJECT_NUMBER = {}
-INPUT = ../rwreg/x86_64/include \
-        ../rwreg/x86_64/src
+INPUT = ../../rwreg/x86_64/include \
+        ../../rwreg/x86_64/src
 PREDEFINED+= DOXYGEN_IGNORE_THIS
 """.format(
             release

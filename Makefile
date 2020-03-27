@@ -17,15 +17,16 @@ all: $(SUBPACKAGES) $(SUBPACKAGES.RPM) $(SUBPACKAGES.DOC)
 rpm: $(SUBPACKAGES) $(SUBPACKAGES.RPM)
 
 doc: $(SUBPACKAGES.DOC)
-	make html
+	$(MAKE) -C $@ docs
 
 cleanrpm: $(SUBPACKAGES.CLEANRPM)
 
 cleandoc: $(SUBPACKAGES.CLEANDOC)
+	$(MAKE) -C doc cleanall
 
 clean: $(SUBPACKAGES.CLEAN) $(SUBPACKAGES.CLEANDOC)
 
-include $(BUILD_HOME)/$(Project)/config/mfSphinx.mk
+#include $(BUILD_HOME)/$(Project)/config/mfSphinx.mk
 
 $(SUBPACKAGES):
 	$(MAKE) -C $@
