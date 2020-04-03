@@ -27,6 +27,7 @@ Table of contents:
 
 
 .. toctree::
+   :hidden:
    :caption: Links to other documentation
    :maxdepth: 1
 
@@ -36,6 +37,7 @@ Table of contents:
    Developer guide <http://0.0.0.0:8000/SITE_ROOT/guides/devguide>
 
 .. toctree::
+   :hidden:
    :caption: Links to API documentation
    :maxdepth: 1
 

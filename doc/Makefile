@@ -10,6 +10,12 @@ SOURCEDIR=source
 BUILDDIR=build
 DOXYREST_PREFIX?=$(CONDA_PREFIX)
 
+EOS_SITE_NAME?=test-gemdaq-ci
+EOS_SITE_PATH?=/tmp/$(USER)/$(EOS_SITE_NAME)
+
+export EOS_SITE_URL?=https://$(EOS_SITE_NAME).web.cern.ch/$(EOS_SITE_NAME)
+export GEM_DOCS_URL?=$(EOS_SITE_URL)
+
 .EXPORT_ALL_VARIABLES:
 
 .PHONY: help Makefile
