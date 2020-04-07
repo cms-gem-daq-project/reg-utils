@@ -18,7 +18,8 @@ import datetime
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath("../../python"))  # Root of the repo
+# Root of the repo
+sys.path.insert(1, os.path.abspath("{}".format(os.getenv("PYTHONSOURCE"))))
 
 if os.getenv("USE_DOXYREST"):
     # path for doxyrest sphinx extensions
@@ -81,35 +82,61 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinxcontrib.napoleon",
     "sphinx_rtd_theme",
+    "autoapi.extension",
 ]
+
+autoapi_dirs = ["{}".format(os.getenv("PYTHONSOURCE"))]
+autoapi_add_toctree_entry = False
 
 if os.getenv("USE_DOXYREST"):
     extensions += ["doxyrest", "cpplexer"]
 else:
     extensions += ["breathe", "exhale"]
     breathe_projects = {
-        "rwreg_x86": "../exhalebuild/xml/",
+        "rwreg_x86": "../../rwreg/x86_64/doc/doxybuild/xml",
+        "rwreg": "../exhalebuild/xml/",
     }
 
-    breathe_default_project = "rwreg_x86"
+    breathe_default_project = "rwreg"
 
     # Setup the exhale extension
     exhale_args = {
         # These arguments are required
         "containmentFolder": "./exhale-api",
         "rootFileName": "api.rst",
-        "rootFileTitle": "``rwreg`` API documentation",
-        "doxygenStripFromPath": "..",
+        "rootFileTitle": "API documentation for rwreg library",
+        "doxygenStripFromPath": "{}".format(os.path.abspath("../../rwreg/x86_64/")),
         # Suggested optional arguments
         "createTreeView": True,
+        # "afterTitleDescription": "",
+        # "fullApiSubSectionTitle": "",
+        # "afterBodySummary": "",
+        # "unabridgedOrphanKinds": [""],
+        "fullToctreeMaxDepth": 1,
         # TIP: if using the sphinx-bootstrap-theme, you need
-        "treeViewIsBootstrap": True,
+        "treeViewIsBootstrap": False,
         "exhaleExecutesDoxygen": True,
         "exhaleDoxygenStdin": """
 PROJECT_NAME = rwreg
 PROJECT_NUMBER = {}
-INPUT = ../../rwreg/x86_64/include \
-        ../../rwreg/x86_64/src
+PROJECT_BRIEF = "Read/write register library for the CTP7 Zynq"
+REPEAT_BRIEF = YES
+INHERIT_DOCS = YES
+MARKDOWN_SUPPORT = YES
+AUTOLINK_SUPPORT = YES
+SUBGROUPING = YES
+EXTRACT_LOCAL_CLASSES = YES
+CASE_SENSE_NAMES = YES
+SHOW_INCLUDE_FILES = YES
+GENERATE_HTML = YES
+INLINE_INFO = YES
+SORT_MEMBER_DOCS = YES
+GENERATE_DEPRECATEDLIST= YES
+SHOW_USED_FILES = YES
+SHOW_FILES = YES
+SHOW_NAMESPACES = YES
+INPUT = ../../rwreg/x86_64/src \
+        ../../rwreg/x86_64/include
 PREDEFINED+= DOXYGEN_IGNORE_THIS
 """.format(
             release
@@ -220,7 +247,7 @@ html_static_path = ["_static"]
 # or fully qualified paths (eg. https://...)
 html_css_files = [
     # "{}/css/rtd-custom.css".format(os.getenv("GEM_DOCS_URL")),
-    "css/custom.css",
+    # "css/custom.css",
 ]
 
 # Custom JavaScript

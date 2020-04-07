@@ -26,8 +26,6 @@ cleandoc: $(SUBPACKAGES.CLEANDOC)
 
 clean: $(SUBPACKAGES.CLEAN) $(SUBPACKAGES.CLEANDOC)
 
-#include $(BUILD_HOME)/$(Project)/config/mfSphinx.mk
-
 $(SUBPACKAGES):
 	$(MAKE) -C $@
 

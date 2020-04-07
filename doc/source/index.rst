@@ -23,8 +23,22 @@ Table of contents:
    installation
    reg_interface/usage/quickstart
    reg_interface/reg_interface
-   rwreg/rwreg_x86.rst
 
+.. toctree::
+   :caption: API documentation for the rwreg library
+   :maxdepth: 1
+
+   rwreg/rwreg_x86.rst
+   exhale-api/api
+
+.. toctree::
+   :caption: reg_utils python API
+   :maxdepth: 1
+
+   autoapi/reg_generator/index
+   autoapi/reg_interface/index
+   sphinx-api-new-options/modules.rst
+   sphinx-api-old-options/modules.rst
 
 .. toctree::
    :hidden:
