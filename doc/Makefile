@@ -24,7 +24,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 .PHONY: docs
-docs: html
+docs: doxygen html
 
 .PHONY: doxygen doxyrest
 doxygen:
