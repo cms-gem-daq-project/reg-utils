@@ -24,18 +24,18 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 .PHONY: docs
-docs: html
+docs: doxyrest html
 
 .PHONY: doxygen doxyrest
 doxygen:
-#	cp reg_utils.cfg.in reg_utils.cfg
-#	perl -pi -e "s|__GIT_VERSION__|$(GIT_VERSION)|g" reg_utils.cfg
-#	doxygen reg_utils.cfg
+	cp rwreg.cfg.in rwreg.cfg
+	perl -pi -e "s|__GIT_VERSION__|$(shell git describe --dirty --always --tags)|g" rwreg.cfg
+	doxygen rwreg.cfg
 
 doxyrest: doxygen
-#	cp doxyrest-config.lua.in doxyrest-config.lua
-#	perl -pi -e "s|__DOXYREST_PREFIX__|$(DOXYREST_PREFIX)|g" doxyrest-config.lua
-#	doxyrest -c doxyrest-config.lua
+	cp doxyrest-config.lua.in doxyrest-config.lua
+	perl -pi -e "s|__DOXYREST_PREFIX__|$(DOXYREST_PREFIX)|g" doxyrest-config.lua
+	doxyrest -c doxyrest-config.lua
 
 .PHONY: cleandoxygen cleandoxyrest cleanexhale
 cleandoxygen:
@@ -53,6 +53,7 @@ clean:
 	rm -rf $(BUILDDIR)
 
 cleanall: clean cleandoxygen cleandoxyrest cleanexhale
+	rm -rf $(SOURCEDIR)/autoapi
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
