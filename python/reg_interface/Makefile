@@ -26,9 +26,6 @@ REG_INTERFACE_VER_PATCH:=$(shell $(BUILD_HOME)/$(Project)/config/tag2rel.sh | aw
 
 include $(BUILD_HOME)/$(Project)/config/mfCommonDefs.mk
 include $(BUILD_HOME)/$(Project)/config/mfPythonDefs.mk
-
-# include $(BUILD_HOME)/$(Project)/config/mfDefs.mk
-
 include $(BUILD_HOME)/$(Project)/config/mfPythonRPM.mk
 
 default:
@@ -38,14 +35,19 @@ default:
 	@cp -rf __init__.py $(PackageDir)
 
 # need to ensure that the python only stuff is packaged into RPMs
-.PHONY: clean preprpm
-_rpmprep: preprpm
-	@echo "Running _rpmprep target"
-preprpm: default
-	@echo "Running preprpm target"
+.PHONY: clean package preprpm
+package: default
 	$(MakeDir) $(ScriptDir)
 	@cp -rf scripts/*  $(ScriptDir)
 	@cp -rf arm common $(PackageDir)
+
+.PHONY: doc cleandoc
+doc: package
+
+_rpmprep: preprpm
+	@echo "Running _rpmprep target"
+preprpm: package
+	@echo "Running preprpm target"
 	-cp -rf README.md LICENSE CHANGELOG.md MANIFEST.in requirements.txt $(PackageDir)
 	-cp -rf README.md LICENSE CHANGELOG.md MANIFEST.in requirements.txt pkg
 
