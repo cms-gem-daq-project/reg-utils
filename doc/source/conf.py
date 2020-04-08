@@ -124,7 +124,7 @@ if os.getenv("USE_DOXYREST"):
 else:
     extensions += ["breathe", "exhale"]
     breathe_projects = {
-        "rwreg_x86": "../../rwreg/x86_64/doc/doxybuild/xml",
+        "rwreg_x86": "../doxybuild/xml",
         "rwreg": "../exhalebuild/xml/",
     }
 
