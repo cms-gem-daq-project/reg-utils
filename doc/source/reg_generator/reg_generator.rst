@@ -1,4 +1,4 @@
-reg_generator
-*************
-DETAILED DOCUMENTATION FOR REG_GENERATOR SHOULD GO HERE
-=======================================================
+reg_generator usage
+===================
+
+TODO: DETAILED DOCUMENTATION FOR REG_GENERATOR SHOULD GO HERE
