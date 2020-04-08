@@ -19,7 +19,12 @@ import datetime
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
 # Root of the repo
-sys.path.insert(1, os.path.abspath("{}".format(os.getenv("PYTHONSOURCE"))))
+sys.path.insert(
+    1, os.path.abspath("{}/reg_generator/pkg".format(os.getenv("PYTHONSOURCE")))
+)
+sys.path.insert(
+    1, os.path.abspath("{}/reg_interface/pkg".format(os.getenv("PYTHONSOURCE")))
+)
 
 if os.getenv("USE_DOXYREST"):
     # path for doxyrest sphinx extensions
@@ -72,7 +77,6 @@ print("Release {}".format(release))
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
@@ -82,11 +86,38 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinxcontrib.napoleon",
     "sphinx_rtd_theme",
-    "autoapi.extension",
+    "autoapi.extension",  ## sphinx-autoapi
+    # "autoapi.extension", ## autoapi...
+    "sphinx.ext.autodoc",
+    "sphinx.ext.inheritance_diagram",
 ]
 
-autoapi_dirs = ["{}".format(os.getenv("PYTHONSOURCE"))]
-autoapi_add_toctree_entry = False
+# # Tell sphinx what the primary language being documented is.
+# primary_domain = "cpp"
+
+# # Tell sphinx what the pygments highlight language should be.
+# highlight_language = "cpp"
+
+autoapi_type = "python"
+autoapi_python_use_implicit_namespaces = True  ## default False
+autoapi_dirs = [
+    "{}/reg_generator/pkg".format(os.getenv("PYTHONSOURCE")),
+    "{}/reg_interface/pkg".format(os.getenv("PYTHONSOURCE")),
+    # "{}".format(os.getenv("PYTHONSOURCE"))
+]
+autoapi_add_toctree_entry = False  ## default True
+autoapi_keep_files = True  ## default False
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "private-members",
+    "show-inheritance",
+    "special-members",
+    "show-inheritance-diagram",
+    "show-module-summary",
+]
+autoapi_ignore = ["*migrations*", "*conf.py", "*setup.py"]
+autoapi_template_dir = "_templates/autoapi"
 
 if os.getenv("USE_DOXYREST"):
     extensions += ["doxyrest", "cpplexer"]
@@ -98,7 +129,9 @@ else:
     }
 
     breathe_default_project = "rwreg"
-
+    ## https://github.com/svenevs/exhale/issues/86
+    ## work around issue where documentation is done in implementation files rather than headers as per conventions
+    breathe_implementation_filename_extensions = []
     # Setup the exhale extension
     exhale_args = {
         # These arguments are required
@@ -138,7 +171,7 @@ SHOW_NAMESPACES = YES
 INPUT = ../../rwreg/x86_64/src \
         ../../rwreg/x86_64/include
 PREDEFINED+= DOXYGEN_IGNORE_THIS
-""".format(
+        """.format(
             release
         ),
     }
