@@ -87,9 +87,9 @@ extensions = [
     "sphinxcontrib.napoleon",
     "sphinx_rtd_theme",
     "autoapi.extension",  ## sphinx-autoapi
-    # "autoapi.extension", ## autoapi...
-    "sphinx.ext.autodoc",
-    "sphinx.ext.inheritance_diagram",
+    # "autoapi.spinx", ## autoapi...
+    # "sphinx.ext.autodoc",
+    # "sphinx.ext.inheritance_diagram",
 ]
 
 # # Tell sphinx what the primary language being documented is.
@@ -121,35 +121,35 @@ autoapi_template_dir = "_templates/autoapi"
 
 if os.getenv("USE_DOXYREST"):
     extensions += ["doxyrest", "cpplexer"]
-else:
-    extensions += ["breathe", "exhale"]
-    breathe_projects = {
-        "rwreg_x86": "../doxybuild/xml",
-        "rwreg": "../exhalebuild/xml/",
-    }
 
-    breathe_default_project = "rwreg"
-    ## https://github.com/svenevs/exhale/issues/86
-    ## work around issue where documentation is done in implementation files rather than headers as per conventions
-    breathe_implementation_filename_extensions = []
-    # Setup the exhale extension
-    exhale_args = {
-        # These arguments are required
-        "containmentFolder": "./exhale-api",
-        "rootFileName": "api.rst",
-        "rootFileTitle": "API documentation for rwreg library",
-        "doxygenStripFromPath": "{}".format(os.path.abspath("../../rwreg/x86_64/")),
-        # Suggested optional arguments
-        "createTreeView": True,
-        # "afterTitleDescription": "",
-        # "fullApiSubSectionTitle": "",
-        # "afterBodySummary": "",
-        # "unabridgedOrphanKinds": [""],
-        "fullToctreeMaxDepth": 1,
-        # TIP: if using the sphinx-bootstrap-theme, you need
-        "treeViewIsBootstrap": False,
-        "exhaleExecutesDoxygen": True,
-        "exhaleDoxygenStdin": """
+extensions += ["breathe", "exhale"]
+breathe_projects = {
+    "rwreg_x86": "../doxybuild/xml",
+    "rwreg": "../exhalebuild/xml/",
+}
+
+breathe_default_project = "rwreg"
+## https://github.com/svenevs/exhale/issues/86
+## work around issue where documentation is done in implementation files rather than headers as per conventions
+breathe_implementation_filename_extensions = []
+# Setup the exhale extension
+exhale_args = {
+    # These arguments are required
+    "containmentFolder": "./exhale-api",
+    "rootFileName": "api.rst",
+    "rootFileTitle": "API documentation for rwreg library",
+    "doxygenStripFromPath": "{}".format(os.path.abspath("../../rwreg/x86_64/")),
+    # Suggested optional arguments
+    "createTreeView": True,
+    # "afterTitleDescription": "",
+    # "fullApiSubSectionTitle": "",
+    # "afterBodySummary": "",
+    # "unabridgedOrphanKinds": [""],
+    "fullToctreeMaxDepth": 1,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    "treeViewIsBootstrap": False,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin": """
 PROJECT_NAME = rwreg
 PROJECT_NUMBER = {}
 PROJECT_BRIEF = "Read/write register library for the CTP7 Zynq"
@@ -171,10 +171,10 @@ SHOW_NAMESPACES = YES
 INPUT = ../../rwreg/x86_64/src \
         ../../rwreg/x86_64/include
 PREDEFINED+= DOXYGEN_IGNORE_THIS
-        """.format(
-            release
-        ),
-    }
+    """.format(
+        release
+    ),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
