@@ -7,28 +7,32 @@ reg_interface usage
    usage/installation
    usage/quickstart
 
-Executable scripts
-------------------
+.. toctree::
+   :maxdepth: 1
+   :caption: Executable scripts
 
-.. automodule:: reg_utils.scripts.reg
-.. automodule:: reg_utils.scripts.sca
-.. automodule:: reg_utils.scripts.gbt
-.. automodule:: reg_utils.scripts.mcs
+   ../autoapi/reg_utils/scripts/reg/index
+   ../autoapi/reg_utils/scripts/sca/index
+   ../autoapi/reg_utils/scripts/gbt/index
+   ../autoapi/reg_utils/scripts/mcs/index
 
-Core modules
-------------
+.. toctree::
+   :maxdepth: 1
+   :caption: Core modules
 
-Command Line Interface
-~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: reg_utils.reg_interface.common.ri_prompt
+   ../autoapi/reg_utils/reg_interface/common/index
 
-.. autoclass:: Prompt
-   :members:
+.. toctree::
+   :maxdepth: 1
+   :caption: Command Line Interface
 
-XML parser
-~~~~~~~~~~
-.. automodule:: reg_utils.reg_interface.common.reg_xml_parser
-   :members:
-   :exclude-members: ADDRESS_TABLE_TOP
+   ../autoapi/reg_utils/reg_interface/common/ri_prompt/index
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: XML parser
+
+   ../autoapi/reg_utils/reg_interface/common/reg_xml_parser/index
 
 
