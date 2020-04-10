@@ -171,7 +171,7 @@ SHOW_NAMESPACES = YES
 INPUT = ../../rwreg/x86_64/src \
         ../../rwreg/x86_64/include
 PREDEFINED+= DOXYGEN_IGNORE_THIS
-    """.format(
+""".format(
         release
     ),
 }
