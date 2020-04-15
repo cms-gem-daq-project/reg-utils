@@ -26,6 +26,24 @@ Table of contents:
    rwreg/rwreg_x86.rst
 
 
+.. toctree::
+   :caption: Links to other documentation
+   :maxdepth: 1
+
+   CMS GEM DAQ project page <http://0.0.0.0:8000>
+   Users guide <http://0.0.0.0:8000/SITE_ROOT/guides/userguide>
+   Expert guide <http://0.0.0.0:8000/SITE_ROOT/guides/expertguide>
+   Developer guide <http://0.0.0.0:8000/SITE_ROOT/guides/devguide>
+
+.. toctree::
+   :caption: Links to API documentation
+   :maxdepth: 1
+
+   gemplotting <http://0.0.0.0:8000/SITE_ROOT/docs/api/gemplotting/latest>
+   vfatqc <http://0.0.0.0:8000/SITE_ROOT/docs/api/vfatqc/latest>
+   reg-utils (this site) <http://0.0.0.0:8000/SITE_ROOT/docs/api/reg-utils/latest>
+
+
 Indices and tables
 ==================
 

@@ -1,5 +1,6 @@
-Project := reg_utils
-include $(BUILD_HOME)/$(Project)/config/mfSphinx.mk
+Project:=reg_utils
+BUILD_HOME?=$(shell dirname `pwd`)
+
 SUBPACKAGES := \
         python \
 	rwreg
@@ -8,7 +9,7 @@ SUBPACKAGES.DEBUG    := $(patsubst %,%.debug,    ${SUBPACKAGES})
 SUBPACKAGES.RPM      := $(patsubst %,%.rpm,      ${SUBPACKAGES})
 SUBPACKAGES.DOC      := $(patsubst %,%.doc,      ${SUBPACKAGES})
 SUBPACKAGES.CLEANRPM := $(patsubst %,%.cleanrpm, ${SUBPACKAGES})
-SUBPACKAGES.CLEANDOC := $(patsubst %,%.cleandoc,    ${SUBPACKAGES})
+SUBPACKAGES.CLEANDOC := $(patsubst %,%.cleandoc, ${SUBPACKAGES})
 SUBPACKAGES.CLEAN    := $(patsubst %,%.clean,    ${SUBPACKAGES})
 
 all: $(SUBPACKAGES) $(SUBPACKAGES.RPM) $(SUBPACKAGES.DOC)
@@ -23,6 +24,8 @@ cleanrpm: $(SUBPACKAGES.CLEANRPM)
 cleandoc: $(SUBPACKAGES.CLEANDOC)
 
 clean: $(SUBPACKAGES.CLEAN) $(SUBPACKAGES.CLEANDOC)
+
+include $(BUILD_HOME)/$(Project)/config/mfSphinx.mk
 
 $(SUBPACKAGES):
 	$(MAKE) -C $@
