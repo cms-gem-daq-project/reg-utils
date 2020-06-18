@@ -49,7 +49,7 @@ preprpm: default
 
 build: rpc
 
-_all:${RPC_SA_LIB} 
+_all:${RPC_SA_LIB}
 
 rpc:${RPC_SA_LIB}
 
@@ -61,13 +61,9 @@ $(OBJS_RPC_SA):$(SRCS_RPC_SA)
 	$(CC) $(CCFLAGS) $(INC) -c -o $@ $<
 
 doc:
-	doxygen doc/${Package}.doxy
 
 clean: cleanrpm
-	-${RM} ${RPC_SA_LIB} ${OBJS_RPC_SA} 
+	-${RM} ${RPC_SA_LIB} ${OBJS_RPC_SA}
 	-rm -rf $(PackageDir)
 
-cleandoc: 
-	-rm -rf doc/html
-	-rm -rf doc/latex
-	-rm -rf doc/xml
+cleandoc:

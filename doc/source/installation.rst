@@ -1,21 +1,22 @@
 Installation guide
-******************
+==================
+
 System requirements
-===================
+-------------------
 One of the unique features of the ``reg_utils`` package is that ``reg_interface`` 
 part of it can work both on the host PC and on the ARM co-CPU of the backend electronics like Zynq. 
 
 Certain packages depending on the architecture has to be installed on the system. They are listed below.
 
 ARM(Zynq) installation
------------------
+~~~~~~~~~~~~~~~~~~~~~~
 The RPM provided is compiled for hard float architecture. You will need a corresponding peta-linux distributive containing the following packages:
 
 * `python2.7`
 * 
 
 TODOHost PC installation
---------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 You need to have following software installed:
 
 * `python2.7` or above

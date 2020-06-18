@@ -1,14 +1,15 @@
 Installation guide
-******************
+==================
+
 System requirements
-===================
+-------------------
 One of the unique features of the ``reg_utils`` package is that ``reg_interface`` 
 part of it can work both on the host PC and on the ARM co-CPU of the backend electronics like Zynq. 
 
 Certain packages depending on the architecture has to be installed on the system. They are listed below.
 
 Host PC installation
---------------------
+~~~~~~~~~~~~~~~~~~~~
 You need to have following software installed:
 
 * `python2.7` or above
@@ -30,7 +31,7 @@ If you need to install the package locally, you can do it running
 and the package will be installed under ``~/.local/lib/``
 
 Zynq installation
------------------
+~~~~~~~~~~~~~~~~~
 You need to have following software installed:
 
 * `python2.7` or above

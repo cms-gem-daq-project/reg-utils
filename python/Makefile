@@ -6,7 +6,7 @@ SUBPACKAGES.DEBUG    := $(patsubst %,%.debug,    ${SUBPACKAGES})
 SUBPACKAGES.DOC      := $(patsubst %,%.doc,      ${SUBPACKAGES})
 SUBPACKAGES.RPM      := $(patsubst %,%.rpm,      ${SUBPACKAGES})
 SUBPACKAGES.CLEANRPM := $(patsubst %,%.cleanrpm, ${SUBPACKAGES})
-SUBPACKAGES.CLEANDOC := $(patsubst %,%.cleandoc,    ${SUBPACKAGES})
+SUBPACKAGES.CLEANDOC := $(patsubst %,%.cleandoc, ${SUBPACKAGES})
 SUBPACKAGES.CLEAN    := $(patsubst %,%.clean,    ${SUBPACKAGES})
 
 rpm: $(SUBPACKAGES) $(SUBPACKAGES.RPM)
@@ -26,8 +26,7 @@ $(SUBPACKAGES.RPM):
 	$(MAKE) -C $(patsubst %.rpm,%, $@) rpm
 
 $(SUBPACKAGES.DOC):
-	@echo "Nothing to do"
-	#$(MAKE) -C $(patsubst %.doc,%, $@) html
+	$(MAKE) -C $(patsubst %.doc,%, $@) doc
 
 $(SUBPACKAGES.CLEANRPM):
 	$(MAKE) -C $(patsubst %.cleanrpm,%, $@) cleanrpm
